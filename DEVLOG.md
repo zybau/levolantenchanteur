@@ -49,3 +49,17 @@
 - Une route Express associe une méthode HTTP + une URL à une fonction qui renvoie une réponse
 - `res.json()` sérialise un objet JS en JSON et positionne automatiquement le bon header `Content-Type`
 - Toutes les routes sont définies avant `app.listen()` — on configure le serveur avant de le démarrer
+
+## 2026-06-22 (suite)
+
+### Palier 4 — Organisation en couches (routes / services)
+
+- Création de `src/app.ts` — configuration Express (routes, middlewares)
+- Création de `src/routes/health.ts` — route `GET /health` isolée dans son fichier
+- `src/index.ts` réduit au strict minimum : importe `app` et démarre le serveur
+- Validation : `http://localhost:3000/api/health` répond toujours `{ "status": "ok" }`
+
+### Points clés appris
+- `Router` Express : mini-instance Express pour regrouper des routes liées — analogie C# : Controller avec RoutePrefix
+- `app.use('/api', healthRouter)` : branche le router et préfixe toutes ses routes par `/api`
+- Séparation des responsabilités : `index.ts` (démarrage) / `app.ts` (configuration) / `routes/` (endpoints)
