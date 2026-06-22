@@ -13,9 +13,13 @@ en remplacement d'un site Blogger vieillissant. Objectif double :
 - Développeur intermédiaire en C# (WPF/MVVM, architecture en couches :
   ViewModels, Services, Repositories, Strategy pattern).
 - **Débutant total en JS/TS backend.** Ne pas supposer de connaissances
-  Node/Express/Prisma acquises — expliquer les concepts au fur et à mesure,
-  idéalement en les reliant à des équivalents C# quand c'est pertinent
-  (ex: Prisma ≈ Entity Framework, service ≈ service, repository ≈ repository).
+  Node/Express/Prisma acquises — expliquer les concepts au fur et à mesure.
+- Pas d'expérience SQL ni Entity Framework en C#. La référence BDD connue est
+  **MongoDB** (documents JSON, collections, `collection.find()`, etc.) — utiliser
+  MongoDB comme point de comparaison pour expliquer PostgreSQL et Prisma, pas EF Core.
+- A déjà utilisé des classes DTO en C# pour sérialiser/désérialiser des données —
+  peut s'appuyer sur ce concept pour expliquer les types retournés par Prisma et la
+  forme des objets JSON dans les réponses API.
 - À l'aise avec Git au quotidien.
 
 ## Stack technique retenue

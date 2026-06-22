@@ -78,3 +78,23 @@
 - Volume Docker : stockage persistant séparé du conteneur — les données survivent aux redémarrages
 - `docker compose up -d` : démarre en arrière-plan ("detached") ; `docker compose down` : arrête et nettoie
 - Sur Windows, Docker s'appuie sur WSL 2 pour accéder au noyau Linux nécessaire à l'isolation des conteneurs
+
+## 2026-06-22 (suite)
+
+### Palier 6 — Prisma : connexion et premier modèle
+
+- Installation de `prisma` (devDependency) et `@prisma/client`
+- Initialisation avec `npx prisma init --datasource-provider postgresql` — génère `prisma/schema.prisma`, `prisma.config.ts`, `.env`
+- Installation de `dotenv` (requis par `prisma.config.ts` pour lire le `.env`)
+- Configuration de `DATABASE_URL` dans `.env` avec les identifiants du `docker-compose.yml`
+- Définition du modèle `Member` dans `schema.prisma` (id, firstName, lastName, email, createdAt)
+- Migration `init` appliquée avec `npx prisma migrate dev --name init` — crée la table en base
+- Validation : migration appliquée sans erreur, table `Member` créée dans PostgreSQL
+
+### Points clés appris
+- Prisma = driver MongoDB mais pour PostgreSQL : `prisma.member.findMany()` ≈ `collection.find()`
+- `prisma` (CLI) vs `@prisma/client` (runtime) : deux paquets distincts avec des rôles différents
+- `schema.prisma` : décrit les tables (modèles) et leurs colonnes — obligatoire contrairement à MongoDB
+- Migration : Prisma génère le SQL et l'applique automatiquement — le fichier `migration.sql` en garde la trace
+- `npx` : raccourci pour exécuter un binaire installé dans `node_modules` sans écrire le chemin complet
+- Variables d'environnement : mécanisme standard pour passer config sensible (mots de passe) sans la mettre dans le code
