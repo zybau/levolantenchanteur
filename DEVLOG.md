@@ -63,3 +63,18 @@
 - `Router` Express : mini-instance Express pour regrouper des routes liées — analogie C# : Controller avec RoutePrefix
 - `app.use('/api', healthRouter)` : branche le router et préfixe toutes ses routes par `/api`
 - Séparation des responsabilités : `index.ts` (démarrage) / `app.ts` (configuration) / `routes/` (endpoints)
+
+## 2026-06-22 (suite)
+
+### Palier 5 — Docker et PostgreSQL
+
+- Installation de Docker Desktop (avec mise à jour de WSL 2)
+- Création de `docker-compose.yml` décrivant un conteneur PostgreSQL 16
+- Validation : `docker compose up -d` démarre le conteneur, `docker compose ps` confirme le statut `running` sur le port 5432
+
+### Points clés appris
+- Docker : outil d'isolation par conteneurs — embarque runtime + librairies + config dans un bloc autonome
+- Image vs conteneur : image = modèle (classe), conteneur = instance en cours d'exécution
+- Volume Docker : stockage persistant séparé du conteneur — les données survivent aux redémarrages
+- `docker compose up -d` : démarre en arrière-plan ("detached") ; `docker compose down` : arrête et nettoie
+- Sur Windows, Docker s'appuie sur WSL 2 pour accéder au noyau Linux nécessaire à l'isolation des conteneurs
