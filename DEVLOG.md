@@ -37,3 +37,15 @@
 - Différence site classique (HTML généré côté serveur) vs API (données JSON)
 - Express reçoit les requêtes HTTP, lit l'URL, exécute le bon code, renvoie une réponse
 - `@types/xxx` : paquets de types TypeScript séparés pour les libs écrites en JS pur
+
+## 2026-06-22 (suite)
+
+### Palier 3 — Première route API avec données en dur
+
+- Ajout de la route `GET /api/health` dans `src/index.ts`
+- Validation : `http://localhost:3000/api/health` répond `200 OK` avec `{ "status": "ok" }`
+
+### Points clés appris
+- Une route Express associe une méthode HTTP + une URL à une fonction qui renvoie une réponse
+- `res.json()` sérialise un objet JS en JSON et positionne automatiquement le bon header `Content-Type`
+- Toutes les routes sont définies avant `app.listen()` — on configure le serveur avant de le démarrer
